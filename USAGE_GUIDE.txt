@@ -1,0 +1,68 @@
+================================================================================
+                       MEDSEARCH - USAGE GUIDE
+================================================================================
+
+This guide explains how to use the 'start_app.py' automation script to launch
+the MedSearch platform.
+
+--------------------------------------------------------------------------------
+1. PREREQUISITES
+--------------------------------------------------------------------------------
+- Python 3.8 or higher must be installed on your system.
+- An active internet connection (only for the first-time setup to download
+  libraries).
+
+--------------------------------------------------------------------------------
+2. HOW TO START THE APPLICATION
+--------------------------------------------------------------------------------
+Open your terminal or command prompt, navigate to the project folder, and run:
+
+
+
+(On Windows, you may need to use 'python start_app.py')
+
+--------------------------------------------------------------------------------
+3. WHAT THE SCRIPT DOES AUTOMATICALLY
+--------------------------------------------------------------------------------
+The script is designed to be "zero-configuration":
+
+a. VIRTUAL ENVIRONMENT (venv):
+   - It checks if a 'venv' folder exists.
+   - If not found, it creates one automatically to keep your system clean.
+   - It automatically re-executes itself within that environment.
+
+b. DEPENDENCY INSTALLATION:
+   - The script will ask: "Do you want to check and install/update required libraries? (y/N)"
+   - Type 'y' and press Enter if it's your first time or if you added new packages.
+   - Type 'n' or just press Enter to skip if you have already installed them.
+
+c. BACKEND SERVER:
+   - It launches the FastAPI backend server on http://127.0.0.1:8000.
+   - This server also serves the frontend automatically.
+
+d. BROWSER AUTOMATION:
+   - Once the server is ready, the script will automatically open your default
+     web browser to the correct address.
+
+--------------------------------------------------------------------------------
+4. HOW TO STOP
+--------------------------------------------------------------------------------
+To stop the application and the server:
+- Go back to the terminal where the script is running.
+- Press 'Ctrl + C' on your keyboard.
+- The script will shut down gracefully.
+
+--------------------------------------------------------------------------------
+5. TROUBLESHOOTING
+--------------------------------------------------------------------------------
+- If the port 8000 is already in use, the script might fail to start the server.
+  Make sure no other MedSearch instance or local dev server is running on that port.
+- If you see "ModuleNotFoundError", run the script again and choose 'y' when 
+  asked to install libraries.
+
+
+  ..\venv\Scripts\uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+================================================================================
+                         Thank you for using MedSearch!
+================================================================================
