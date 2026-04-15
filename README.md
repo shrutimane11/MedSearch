@@ -1,4 +1,13 @@
-#  MedSearch: India's AI-Powered Medicine Price Predictor
+![WhatsApp Image 2026-04-15 at 11 56 22 AM](https://github.com/user-attachments/assets/5dba2672-fb3d-4286-8a58-642fb72205c4)
+
+
+
+![WhatsApp Image 2026-04-15 at 11 56 06 AM](https://github.com/user-attachments/assets/de56495f-977c-4e1e-857a-7751bb352d6b)
+
+
+
+
+#MedSearch: India's AI-Powered Medicine Price Predictor
 
 MedSearch is a full-stack web application designed to help consumers find the best deals on medicines in India. It does this by combining a robust search engine over a dataset of ~220,000 Indian pharmaceutical products with a deep learning Neural Network (Keras) that predicts the **"AI Fair Value"** of any medicine.
 
