@@ -15,10 +15,10 @@ MedSearch is a full-stack web application designed to help consumers find the be
 
 - **Blazing Fast Offline Search**: Instantly filter across hundreds of thousands of medicines by brand name or active ingredient using a local dataset (no live web-scraping).
 - **Dose Range Filtering**: Precise dual-handle slider to filter results by exact mg strengths.
-- **✨ AI Fair Value Generation**: A trained Keras neural network analyzes the medicine's therapeutic class, chemical ingredients, and dosage form to estimate the "true market value" of the medicine.
+- ** AI Fair Value Generation**: A trained Keras neural network analyzes the medicine's therapeutic class, chemical ingredients, and dosage form to estimate the "true market value" of the medicine.
 - **Deal Indicator Badges**: 
-  - 🟢 **Great Deal**: The listed price is significantly cheaper than the AI's market estimate.
-  - ⬛ **Premium Brand**: The listed price carries a premium markup over the typical market rate.
+   **Great Deal**: The listed price is significantly cheaper than the AI's market estimate.
+   **Premium Brand**: The listed price carries a premium markup over the typical market rate.
 - **Premium UI**: A clean, pastel-themed interface that offers a seamless user experience.
 
 
