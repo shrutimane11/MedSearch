@@ -1,0 +1,63 @@
+﻿name: Update Leaderboard
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+jobs:
+  update-leaderboard:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Update LEADERBOARD.csv
+        env:
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_DATE: ${{ github.event.pull_request.merged_at }}
+          PR_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          python3 << 'EOF'
+          import csv, os
+          from datetime import datetime
+          username = os.environ["PR_AUTHOR"]
+          merged_date = datetime.fromisoformat(os.environ["PR_DATE"].replace("Z", "+00:00")).strftime("%Y-%m-%d")
+          branch = os.environ.get("PR_BRANCH", "main")
+          leaderboard_file = "LEADERBOARD.csv"
+          fieldnames = ["Sr No.", "GitHub Username", "Branch", "Contribution Date"]
+          rows = []
+          if os.path.exists(leaderboard_file):
+              with open(leaderboard_file, newline='', encoding='utf-8') as f:
+                  rows = list(csv.DictReader(f))
+          if not any(r["GitHub Username"] == username for r in rows):
+              rows.append({
+                  "Sr No.": str(len(rows) + 1),
+                  "GitHub Username": username,
+                  "Branch": branch,
+                  "Contribution Date": merged_date,
+              })
+              for i, row in enumerate(rows):
+                  row["Sr No."] = str(i + 1)
+              with open(leaderboard_file, 'w', newline='', encoding='utf-8') as f:
+                  writer = csv.DictWriter(f, fieldnames=fieldnames)
+                  writer.writeheader()
+                  writer.writerows(rows)
+              print(f"Added {username} to leaderboard")
+          else:
+              print(f"{username} already in leaderboard")
+          EOF
+      - name: Commit and push
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add LEADERBOARD.csv
+          git diff --staged --quiet || git commit -m "🏆 Leaderboard: Add @${{ github.event.pull_request.user.login }} [automated]"
+          git push
