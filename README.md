@@ -71,7 +71,7 @@ This script will:
 - Clean and normalize the dataset.
 - Remove price outliers (top 1%).
 - Train the Keras Sequential model over 100 epochs.
-- Export the updated `medicine_price_model.keras`, scalers, and encoders directly into the `backend/models/` directory.
+- Export the updated `medicine_price_model.keras`, scalers, and encoders directly into the `backend/models/`  directory.
 
 The FastAPI server will automatically detect the changes and reload the new AI brain!
 
